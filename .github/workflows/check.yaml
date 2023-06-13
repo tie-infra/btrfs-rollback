@@ -1,0 +1,26 @@
+name: Check
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  check:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install nix
+        uses: cachix/install-nix-action@v21
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up cachix
+        uses: cachix/cachix-action@v12
+        with:
+          name: yamporg
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Run nix flake check
+        run: |
+          nix flake check --all-systems "$installable"
+        env:
+          installable: "github:${{ github.repository }}/${{ github.sha }}"
