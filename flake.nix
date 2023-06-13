@@ -2,7 +2,7 @@
   description = "A program to restore btrfs subvolume from snapshot";
 
   inputs = {
-    nixpkgs.url = "nixpkgs";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     systems.url = "systems";
     flake-parts.url = "flake-parts";
     minimal-shell.url = "github:tie-infra/minimal-shell";
