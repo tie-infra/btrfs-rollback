@@ -12,7 +12,6 @@ jobs:
         uses: cachix/install-nix-action@v22
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
-          install_url: "https://releases.nixos.org/nix/nix-2.16.1/install"
           extra_nix_config: "system-features = nixos-test benchmark big-parallel kvm"
 
       - name: Set up cachix
