@@ -1,5 +1,5 @@
 {
-  description = "A program to restore btrfs subvolume from snapshot";
+  description = "A program to rollback btrfs subvolume to a snapshot";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
@@ -16,7 +16,7 @@
     perSystem = { lib, pkgs, ... }: {
       apps = lib.mkIf (pkgs.stdenv.isLinux) {
         default.program =
-          (pkgs.extend inputs.self.overlays.default).btrfs-restore;
+          (pkgs.extend inputs.self.overlays.default).btrfs-rollback;
       };
       checks = lib.mkIf (pkgs.stdenv.isLinux) {
         default = inputs.nixpkgs.lib.nixos.runTest {

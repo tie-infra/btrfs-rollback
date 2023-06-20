@@ -1,3 +1,3 @@
 final: prev: {
-  btrfs-restore = final.callPackage ./package.nix { };
+  btrfs-rollback = final.callPackage ./package.nix { };
 }

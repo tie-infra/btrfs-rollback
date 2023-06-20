@@ -28,7 +28,7 @@ struct Args {
     #[clap(short, long)]
     subvolume: PathBuf,
 
-    /// Btrfs snapshot to restore subvolume from.
+    /// Btrfs snapshot for subvolume rollback.
     #[clap(short, long)]
     snapshot: PathBuf,
 }
@@ -47,12 +47,12 @@ fn main() -> Result<()> {
     )
     .context("Failed to mount filesystem")?;
 
-    let result = restore_snapshot(&args.mountpoint, &args.subvolume, &args.snapshot);
+    let result = rollback_snapshot(&args.mountpoint, &args.subvolume, &args.snapshot);
     unmount(&args.mountpoint);
     result
 }
 
-fn restore_snapshot(mountpoint: &Path, subvolume: &Path, snapshot: &Path) -> Result<()> {
+fn rollback_snapshot(mountpoint: &Path, subvolume: &Path, snapshot: &Path) -> Result<()> {
     let subvolume_path = mountpoint.join(subvolume.clean());
     let snapshot_path = mountpoint.join(snapshot.clean());
 
@@ -61,7 +61,7 @@ fn restore_snapshot(mountpoint: &Path, subvolume: &Path, snapshot: &Path) -> Res
     // filesystem.
     //
     // As an additional check, we also ensure that we have a subvolume to
-    // restore from before deleting everything.
+    // rollback to before deleting everything.
 
     ensure_subvolume(&snapshot_path)?;
 
@@ -74,7 +74,7 @@ fn restore_snapshot(mountpoint: &Path, subvolume: &Path, snapshot: &Path) -> Res
         CreateSnapshotFlags::RECURSIVE,
         None,
     )
-    .context("Failed to recursively restore snapshot")
+    .context("Failed to recursively rollback to snapshot")
 }
 
 fn ensure_subvolume(path: &Path) -> Result<()> {
