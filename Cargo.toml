@@ -9,7 +9,7 @@ path = "src/main.rs"
 
 [dependencies]
 anyhow = "1.0.71"
-libbtrfsutil = "0.5.2"
+libbtrfsutil = "0.6.0"
 path-clean = "1.0.1"
 
 [dependencies.clap]
