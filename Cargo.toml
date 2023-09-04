@@ -17,6 +17,6 @@ version = "4.2.7"
 features = ["derive"]
 
 [dependencies.nix]
-version = "0.26.2"
+version = "0.26.4"
 default-features = false
 features = ["mount"]
