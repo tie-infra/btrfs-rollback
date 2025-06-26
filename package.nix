@@ -6,7 +6,7 @@ rustPlatform.buildRustPackage {
   name = "btrfs-rollback";
   src = ./.;
 
-  cargoHash = "sha256-AljqhBLVMjGExy3aO7FpBRbiih8nfbXzSi/nP0DUXk0=";
+  cargoHash = "sha256-XUOEbJy9R9F0jOiHKMHaFZQO1B/Zeh7/FJGR+Ku6eXo=";
 
   nativeBuildInputs = [ rustPlatform.bindgenHook ];
   buildInputs = [ btrfs-progs ];
